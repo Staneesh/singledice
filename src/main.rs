@@ -11,9 +11,25 @@ fn generate_dice(how_many: u32) -> Vec<u32> {
     return res;
 }
 
+#[derive(Debug)]
+struct Player {
+    money: u64,
+    dice: Vec<u32>,
+}
+
+impl Player {
+    pub fn new(default_money: u64) -> Player {
+        Player {
+            money: default_money,
+            dice: generate_dice(0),
+        }
+    }
+}
+
 fn main() {
     println!("intro...");
 
-    let dice = generate_dice(2);
-    println!("Dice: {:?}", dice);
+    let player = Player::new(100);
+
+    println!("Player: {:?}", player);
 }
