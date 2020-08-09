@@ -30,6 +30,12 @@ fn main() {
     println!("intro...");
 
     let player = Player::new(100);
+    let mut enemies = Vec::<Player>::new();
+    let enemies_count = 3;
+    for _ in 0..enemies_count {
+        enemies.push(Player::new(50));
+    }
 
     println!("Player: {:?}", player);
+    println!("Enemies: {:?}", enemies);
 }
