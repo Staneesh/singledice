@@ -38,4 +38,8 @@ fn main() {
 
     println!("Player: {:?}", player);
     println!("Enemies: {:?}", enemies);
+
+    let mut game_is_not_over = true;
+
+    while game_is_not_over == true {}
 }
