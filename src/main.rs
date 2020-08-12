@@ -24,6 +24,10 @@ impl Player {
             dice: generate_dice(0),
         }
     }
+    pub fn calculate_points(&self) -> u64 {
+        let mut result: u64 = 0;
+        return result;
+    }
 }
 
 fn main() {
@@ -41,5 +45,7 @@ fn main() {
 
     let mut game_is_not_over = true;
 
-    while game_is_not_over == true {}
+    while game_is_not_over == true {
+        let points = player.calculate_points();
+    }
 }
