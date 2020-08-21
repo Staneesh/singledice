@@ -1,4 +1,5 @@
 use rand::Rng;
+use std::io;
 
 fn generate_dice(how_many: u32) -> Vec<u32> {
     let mut res = Vec::<u32>::new();
@@ -32,6 +33,9 @@ impl Player {
         }
     }
 
+    pub fn change_die(&mut self, index_to_change: u32) {
+        self.dice[index_to_change as usize] = rand::thread_rng().gen_range(1, 7);
+    }
     pub fn calculate_points(&self) -> u32 {
         let mut result: u32 = 0;
 
@@ -43,7 +47,7 @@ impl Player {
             how_many[*d as usize] += 1;
         }
 
-        println!("How many: {:?}", how_many);
+        //println!("How many: {:?}", how_many);
 
         for d in 0..7 {
             if how_many[d] * d as u32 > most_common_count * most_common {
@@ -70,6 +74,22 @@ fn main() {
     }
 
     player.roll_dice();
+    println!("Players dice: {:?}", player.dice);
+    println!("How many dice would you like to change? (5 money each)\n(0 if none)");
+
+    let mut dices_to_change_str = String::new();
+    io::stdin().read_line(&mut dices_to_change_str).unwrap();
+    let dices_to_change: u32 = dices_to_change_str.trim().parse().unwrap();
+
+    for i in 0..dices_to_change {
+        println!("Which die would you like to change?");
+
+        let mut die_to_change_str = String::new();
+        io::stdin().read_line(&mut die_to_change_str).unwrap();
+        let die_to_change: u32 = die_to_change_str.trim().parse().unwrap();
+
+        player.change_die(die_to_change);
+    }
     let points = player.calculate_points();
 
     println!("Player: {:?}", player);
